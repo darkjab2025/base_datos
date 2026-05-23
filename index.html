@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Guía de estudio sobre bases de datos, SGBD y modelo Entidad-Relación para estudiantes de primer año de Ingeniería en Sistemas de Información, UNAN-León." />
+  <title>Bases de Datos y Modelo E-R | UNAN-León</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero" id="inicio">
+    <nav class="navbar navbar-expand-lg hero-navbar" aria-label="Menú principal">
+      <div class="container hero-navbar-inner">
+        <a href="#inicio" class="navbar-brand brand">
+          <span class="brand-icon">BD</span>
+          <span>Fundamentos de Bases de Datos</span>
+        </a>
+        <button class="navbar-toggler hero-navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Mostrar navegación">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-lg-end" id="mainNav">
+          <div class="nav-links navbar-nav ms-auto align-items-lg-center">
+            <a class="nav-link" href="#conceptos">Conceptos</a>
+            <a class="nav-link" href="#sgbd">SGBD</a>
+            <a class="nav-link" href="#er">Modelo E-R</a>
+            <a class="nav-link" href="#practica">Práctica</a>
+            <a class="nav-link" href="#trabajo">Trabajo 10 pts</a>
+            <a class="nav-link" href="#fuentes">Fuentes</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section class="hero-content">
+      <div>
+        <p class="eyebrow">UNAN-León · Ingeniería en Sistemas de Información · Primer año</p>
+        <h1>Bases de Datos, SGBD y Modelo Entidad-Relación</h1>
+        <p class="hero-text">
+          En esta guía estudiarás qué es una base de datos, para qué se utiliza,
+          cómo se clasifica, qué función cumple un SGBD/DBMS y cómo diseñar un
+          modelo Entidad-Relación antes de crear una base de datos.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#trabajo">Ver trabajo evaluativo</a>
+          <a class="btn secondary" href="#pasos">Ir a la guía paso a paso</a>
+        </div>
+      </div>
+
+      <div class="hero-card" aria-label="Resumen visual">
+        <div class="db-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <h2>¿Qué aprenderás?</h2>
+        <ul>
+          <li>Identificar datos, entidades y atributos.</li>
+          <li>Distinguir bases de datos, tablas y relaciones.</li>
+          <li>Diseñar un modelo E-R básico.</li>
+          <li>Crear tablas con llaves primarias y foráneas.</li>
+        </ul>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="section intro-grid">
+      <article class="panel">
+        <h2>Objetivos de la sesión</h2>
+        <ul class="check-list">
+          <li>Comprender la importancia de las bases de datos en sistemas reales.</li>
+          <li>Reconocer ejemplos de uso en la vida diaria y en instituciones.</li>
+          <li>Explicar el propósito de un Sistema Gestor de Base de Datos.</li>
+          <li>Diseñar un modelo E-R sencillo a partir de un problema.</li>
+          <li>Crear una base de datos básica con tablas y relaciones.</li>
+        </ul>
+      </article>
+
+      <article class="panel accent">
+        <h2>Preguntas diagnósticas</h2>
+        <ol class="number-list">
+          <li>¿Qué entienden por base de datos?</li>
+          <li>¿Dónde se usan las bases de datos en la vida diaria?</li>
+          <li>¿Qué aplicaciones conocen para guardar información?</li>
+          <li>¿Qué diferencia hay entre guardar datos en Excel y en una base de datos?</li>
+          <li>¿Qué información necesita guardar una universidad sobre sus estudiantes?</li>
+        </ol>
+      </article>
+    </section>
+
+    <section class="section" id="conceptos">
+      <p class="section-label">Tema 1</p>
+      <h2>Antecedentes, definición y clasificación de bases de datos</h2>
+      <p>
+        Las bases de datos surgen por la necesidad de almacenar, organizar y consultar
+        información de forma eficiente. Antes de los sistemas actuales, muchas instituciones
+        guardaban datos en papel, archivos físicos o listas separadas. Con el crecimiento de
+        las empresas, universidades, bancos y sistemas administrativos, fue necesario crear
+        sistemas capaces de guardar grandes volúmenes de datos, evitar duplicidad y permitir
+        consultas rápidas.
+      </p>
+
+      <div class="definition-card">
+        <h3>Definición sencilla</h3>
+        <p>
+          Una <strong>base de datos</strong> es una colección organizada de información que
+          se almacena generalmente en un sistema informático para poder registrarla,
+          consultarla, modificarla y protegerla.
+        </p>
+      </div>
+
+      <div class="cards three">
+        <article class="card">
+          <h3>Dato</h3>
+          <p>Es un valor individual. Ejemplo: <strong>“María López”</strong>, <strong>“95”</strong>, <strong>“2026-05-23”</strong>.</p>
+        </article>
+        <article class="card">
+          <h3>Información</h3>
+          <p>Es el dato interpretado. Ejemplo: “María López obtuvo 95 puntos en Matemática”.</p>
+        </article>
+        <article class="card">
+          <h3>Base de datos</h3>
+          <p>Es la estructura que permite guardar muchos datos relacionados y consultarlos cuando se necesitan.</p>
+        </article>
+      </div>
+
+      <h3>Clasificación general</h3>
+      <div class="table-wrapper">
+          <table class="table table-hover align-middle mb-0">
+          <thead>
+            <tr>
+              <th>Tipo de base de datos</th>
+              <th>Descripción</th>
+              <th>Ejemplo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Relacional</td>
+              <td>Organiza la información en tablas relacionadas mediante llaves.</td>
+              <td>MySQL, PostgreSQL, SQL Server, Oracle, Access.</td>
+            </tr>
+            <tr>
+              <td>No relacional / NoSQL</td>
+              <td>Guarda datos en documentos, claves-valor, grafos o columnas.</td>
+              <td>MongoDB, Redis, Neo4j.</td>
+            </tr>
+            <tr>
+              <td>Centralizada</td>
+              <td>Los datos se guardan en un solo servidor o ubicación principal.</td>
+              <td>Sistema académico local de una institución.</td>
+            </tr>
+            <tr>
+              <td>Distribuida</td>
+              <td>Los datos se distribuyen en varios servidores o sedes.</td>
+              <td>Sistema bancario con sucursales conectadas.</td>
+            </tr>
+            <tr>
+              <td>En la nube</td>
+              <td>La base de datos se aloja en servicios de internet.</td>
+              <td>Amazon RDS, Azure SQL, Google Cloud SQL.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Ejemplos de la vida diaria</h3>
+      <div class="cards examples">
+        <article class="card small"><strong>Matrícula:</strong> estudiantes, carreras, grupos, pagos y asignaturas.</article>
+        <article class="card small"><strong>Inventario:</strong> productos, entradas, salidas, proveedores y existencias.</article>
+        <article class="card small"><strong>Biblioteca:</strong> libros, autores, préstamos, estudiantes y fechas de devolución.</article>
+        <article class="card small"><strong>Ventas:</strong> clientes, facturas, productos, pagos y descuentos.</article>
+        <article class="card small"><strong>Bancos:</strong> clientes, cuentas, transacciones y préstamos.</article>
+        <article class="card small"><strong>Sistemas académicos:</strong> docentes, estudiantes, notas, horarios y aulas.</article>
+      </div>
+    </section>
+
+    <section class="section dark" id="sgbd">
+      <p class="section-label">Tema 2</p>
+      <h2>¿Qué es un SGBD o DBMS?</h2>
+      <p>
+        Un <strong>SGBD</strong> o <strong>DBMS</strong> es el software que permite crear,
+        administrar y utilizar bases de datos. Funciona como intermediario entre los usuarios,
+        las aplicaciones y los datos almacenados.
+      </p>
+
+      <div class="cards two">
+        <article class="card dark-card">
+          <h3>Objetivo principal</h3>
+          <p>
+            Permitir que la información se almacene de forma ordenada, segura y accesible,
+            facilitando operaciones como registrar, consultar, actualizar y eliminar datos.
+          </p>
+        </article>
+        <article class="card dark-card">
+          <h3>Ejemplos de SGBD</h3>
+          <p>
+            Oracle Database, Microsoft SQL Server, PostgreSQL, MySQL, MariaDB y Microsoft Access.
+          </p>
+        </article>
+      </div>
+
+      <h3>Herramientas o funciones principales</h3>
+      <div class="timeline">
+        <div class="step">
+          <span>1</span>
+          <div class="step-content">
+            <strong>Creación de estructuras:</strong>
+            <p>Permite crear bases de datos, tablas, campos, llaves y relaciones.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span>2</span>
+          <div class="step-content">
+            <strong>Manipulación de datos:</strong>
+            <p>Permite insertar, modificar, eliminar y consultar registros.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span>3</span>
+          <div class="step-content">
+            <strong>Recuperación de información:</strong>
+            <p>Permite buscar datos mediante consultas, filtros y reportes.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span>4</span>
+          <div class="step-content">
+            <strong>Seguridad:</strong>
+            <p>Controla usuarios, permisos y acceso a la información.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span>5</span>
+          <div class="step-content">
+            <strong>Copias de seguridad:</strong>
+            <p>Permite respaldar datos para recuperarlos ante fallos.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span>6</span>
+          <div class="step-content">
+            <strong>Importación y exportación:</strong>
+            <p>Permite trasladar información desde o hacia Excel, CSV u otros sistemas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="er">
+      <p class="section-label">Tema 3</p>
+      <h2>Modelo Entidad-Relación E-R</h2>
+      <p>
+        El <strong>modelo Entidad-Relación</strong> es una técnica de diseño conceptual que
+        permite representar la información importante de un sistema antes de crear las tablas
+        en una base de datos. Ayuda a responder: ¿qué datos se guardarán?, ¿cómo se relacionan?,
+        ¿cuáles son sus atributos? y ¿qué reglas debe cumplir el sistema?
+      </p>
+
+      <div class="cards three">
+        <article class="card">
+          <h3>Entidad</h3>
+          <p>Objeto, persona, lugar o concepto del que se desea guardar información.</p>
+          <p class="example">Ejemplo: Estudiante, Docente, Producto, Libro.</p>
+        </article>
+        <article class="card">
+          <h3>Atributo</h3>
+          <p>Característica que describe a una entidad.</p>
+          <p class="example">Ejemplo: nombre, cédula, fecha_nacimiento, precio.</p>
+        </article>
+        <article class="card">
+          <h3>Relación</h3>
+          <p>Asociación entre dos o más entidades.</p>
+          <p class="example">Ejemplo: Estudiante se matricula en Asignatura.</p>
+        </article>
+      </div>
+
+      <h3>Tipos de relaciones con ejemplos</h3>
+      <div class="relationship-grid">
+        <article class="relation">
+          <span class="badge">1 : 1</span>
+          <h4>Uno a uno</h4>
+          <p>Un registro de una tabla se relaciona con un solo registro de otra tabla.</p>
+          <p><strong>Ejemplo:</strong> una persona tiene un expediente académico único.</p>
+          <code>Persona 1 ─── 1 Expediente</code>
+        </article>
+
+        <article class="relation">
+          <span class="badge">1 : N</span>
+          <h4>Uno a muchos</h4>
+          <p>Un registro de una tabla se relaciona con varios registros de otra tabla.</p>
+          <p><strong>Ejemplo:</strong> un cliente puede realizar muchas facturas.</p>
+          <code>Cliente 1 ─── N Facturas</code>
+        </article>
+
+        <article class="relation">
+          <span class="badge">N : M</span>
+          <h4>Muchos a muchos</h4>
+          <p>Varios registros de una tabla se relacionan con varios registros de otra tabla.</p>
+          <p><strong>Ejemplo:</strong> un estudiante puede cursar varias asignaturas y una asignatura puede tener varios estudiantes.</p>
+          <code>Estudiante N ─── M Asignatura</code>
+        </article>
+      </div>
+
+      <div class="note">
+        <strong>Importante:</strong> una relación muchos a muchos normalmente se resuelve con
+        una tabla intermedia. Por ejemplo: <strong>Estudiante</strong>, <strong>Asignatura</strong>
+        y <strong>Matrícula</strong>.
+      </div>
+
+      <h3>Ejemplo de modelo E-R: matrícula universitaria</h3>
+      <div class="diagram" role="img" aria-label="Diagrama simple de entidades Estudiante, Matrícula y Asignatura">
+        <div class="entity">
+          <h4>ESTUDIANTE</h4>
+          <p><u>id_estudiante</u></p>
+          <p>carnet</p>
+          <p>nombres</p>
+          <p>apellidos</p>
+        </div>
+        <div class="connector">
+          <span>1</span>
+          <div class="line"></div>
+          <strong>realiza</strong>
+          <div class="line"></div>
+          <span>N</span>
+        </div>
+        <div class="entity junction">
+          <h4>MATRÍCULA</h4>
+          <p><u>id_matricula</u></p>
+          <p>fecha</p>
+          <p>id_estudiante</p>
+          <p>id_asignatura</p>
+        </div>
+        <div class="connector">
+          <span>N</span>
+          <div class="line"></div>
+          <strong>incluye</strong>
+          <div class="line"></div>
+          <span>1</span>
+        </div>
+        <div class="entity">
+          <h4>ASIGNATURA</h4>
+          <p><u>id_asignatura</u></p>
+          <p>codigo</p>
+          <p>nombre</p>
+          <p>creditos</p>
+        </div>
+      </div>
+
+      <h3>Elementos mínimos que debe tener un modelo E-R</h3>
+      <ul class="check-list columns">
+        <li>Entidades con nombres claros.</li>
+        <li>Atributos principales de cada entidad.</li>
+        <li>Llave primaria en cada entidad.</li>
+        <li>Relaciones entre entidades.</li>
+        <li>Cardinalidad: 1:1, 1:N o N:M.</li>
+        <li>Tabla intermedia cuando exista relación N:M.</li>
+      </ul>
+    </section>
+
+    <section class="section light" id="pasos">
+      <p class="section-label">Tema 4</p>
+      <h2>Guía paso a paso para crear una base de datos</h2>
+
+      <div class="steps-grid">
+        <article class="process-step">
+          <span>01</span>
+          <h3>Analizar el problema</h3>
+          <p>Identifica qué información necesita guardar el sistema. Ejemplo: una biblioteca necesita libros, estudiantes y préstamos.</p>
+        </article>
+        <article class="process-step">
+          <span>02</span>
+          <h3>Identificar entidades</h3>
+          <p>Busca sustantivos importantes: Estudiante, Libro, Préstamo, Autor, Categoría.</p>
+        </article>
+        <article class="process-step">
+          <span>03</span>
+          <h3>Definir atributos</h3>
+          <p>Agrega datos de cada entidad: nombre, código, fecha, precio, estado, dirección.</p>
+        </article>
+        <article class="process-step">
+          <span>04</span>
+          <h3>Establecer llaves</h3>
+          <p>Cada tabla debe tener una llave primaria. Las llaves foráneas conectan tablas relacionadas.</p>
+        </article>
+        <article class="process-step">
+          <span>05</span>
+          <h3>Diseñar el modelo E-R</h3>
+          <p>Dibuja entidades, atributos y relaciones con su cardinalidad.</p>
+        </article>
+        <article class="process-step">
+          <span>06</span>
+          <h3>Crear la base de datos</h3>
+          <p>Utiliza un SGBD como MySQL, PostgreSQL, SQL Server, Oracle o Access.</p>
+        </article>
+      </div>
+
+      <h3>Ejemplo básico en SQL</h3>
+      <p>
+        Este ejemplo representa una relación muchos a muchos entre estudiantes y asignaturas,
+        resuelta mediante la tabla intermedia <strong>matriculas</strong>.
+      </p>
+
+      <pre><code>CREATE DATABASE universidad_demo;
+
+CREATE TABLE estudiantes (
+  id_estudiante INT PRIMARY KEY,
+  carnet VARCHAR(20) NOT NULL,
+  nombres VARCHAR(80) NOT NULL,
+  apellidos VARCHAR(80) NOT NULL
+);
+
+CREATE TABLE asignaturas (
+  id_asignatura INT PRIMARY KEY,
+  codigo VARCHAR(20) NOT NULL,
+  nombre VARCHAR(100) NOT NULL,
+  creditos INT NOT NULL
+);
+
+CREATE TABLE matriculas (
+  id_matricula INT PRIMARY KEY,
+  id_estudiante INT NOT NULL,
+  id_asignatura INT NOT NULL,
+  fecha_matricula DATE NOT NULL,
+  FOREIGN KEY (id_estudiante) REFERENCES estudiantes(id_estudiante),
+  FOREIGN KEY (id_asignatura) REFERENCES asignaturas(id_asignatura)
+);</code></pre>
+
+      <details class="accordion">
+        <summary>Consulta de ejemplo usando JOIN</summary>
+        <pre><code>SELECT 
+  e.carnet,
+  e.nombres,
+  e.apellidos,
+  a.nombre AS asignatura,
+  m.fecha_matricula
+FROM matriculas m
+INNER JOIN estudiantes e ON m.id_estudiante = e.id_estudiante
+INNER JOIN asignaturas a ON m.id_asignatura = a.id_asignatura;</code></pre>
+      </details>
+    </section>
+
+    <section class="section" id="practica">
+      <p class="section-label">Actividad de clase</p>
+      <h2>Práctica guiada: diseñar una base de datos sencilla</h2>
+      <p>
+        En equipos, seleccionen un caso de la vida diaria y diseñen una base de datos
+        pequeña. Pueden elegir uno de los siguientes escenarios:
+      </p>
+
+      <div class="cards examples">
+        <article class="card small"><strong>Biblioteca:</strong> libros, autores, estudiantes y préstamos.</article>
+        <article class="card small"><strong>Ventas:</strong> productos, clientes, facturas y detalle de factura.</article>
+        <article class="card small"><strong>Inventario:</strong> productos, proveedores, entradas y salidas.</article>
+        <article class="card small"><strong>Matrícula:</strong> estudiantes, carreras, asignaturas y matrículas.</article>
+      </div>
+
+      <div class="activity-box">
+        <h3>Producto esperado en clase</h3>
+        <ul>
+          <li>Lista de entidades principales.</li>
+          <li>Atributos de cada entidad.</li>
+          <li>Llave primaria de cada entidad.</li>
+          <li>Relaciones con cardinalidad.</li>
+          <li>Borrador del modelo E-R.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section assignment" id="trabajo">
+      <p class="section-label">Trabajo evaluativo</p>
+      <h2>Diseño y creación de una base de datos con modelo E-R</h2>
+      <p class="assignment-value">Valor: <strong>10 puntos</strong></p>
+
+      <div class="cards two">
+        <article class="card">
+          <h3>Indicaciones generales</h3>
+          <ul>
+            <li>Modalidad: equipos de 3 a 5 estudiantes.</li>
+            <li>Seleccionar un problema real o cercano a la vida diaria.</li>
+            <li>Diseñar el modelo Entidad-Relación.</li>
+            <li>Crear la base de datos en el SGBD indicado por el docente.</li>
+            <li>Entregar el modelo E-R, las tablas creadas y una breve explicación.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Temas sugeridos</h3>
+          <ul>
+            <li>Sistema de matrícula estudiantil.</li>
+            <li>Inventario de laboratorio de computación.</li>
+            <li>Biblioteca universitaria.</li>
+            <li>Sistema de ventas de una pulpería.</li>
+            <li>Control de préstamos de equipos tecnológicos.</li>
+            <li>Registro de asistencia a clases.</li>
+          </ul>
+        </article>
+      </div>
+
+      <h3>Entregables</h3>
+      <div class="deliverables">
+        <div><span>1</span> Portada con nombre de la universidad, carrera, asignatura, integrantes y fecha.</div>
+        <div><span>2</span> Descripción del problema que resolverá la base de datos.</div>
+        <div><span>3</span> Lista de entidades, atributos, llaves primarias y llaves foráneas.</div>
+        <div><span>4</span> Modelo Entidad-Relación con cardinalidades.</div>
+        <div><span>5</span> Base de datos creada: capturas, archivo Access o script SQL.</div>
+        <div><span>6</span> Breve explicación del funcionamiento de la base de datos.</div>
+      </div>
+
+      <h3>Rúbrica de evaluación: 10 puntos</h3>
+      <div class="table-wrapper rubric">
+          <table class="table table-hover align-middle mb-0">
+          <thead>
+            <tr>
+              <th>Criterio</th>
+              <th>Descripción</th>
+              <th>Puntaje</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Planteamiento del problema</td>
+              <td>Describe claramente qué necesidad resuelve la base de datos y qué información se desea controlar.</td>
+              <td>1 pt</td>
+            </tr>
+            <tr>
+              <td>Identificación de entidades</td>
+              <td>Define al menos 4 entidades principales relacionadas con el problema seleccionado.</td>
+              <td>1.5 pts</td>
+            </tr>
+            <tr>
+              <td>Atributos, llaves primarias y foráneas</td>
+              <td>Incluye atributos adecuados, identifica llaves primarias y utiliza llaves foráneas cuando corresponde.</td>
+              <td>2 pts</td>
+            </tr>
+            <tr>
+              <td>Relaciones y cardinalidad</td>
+              <td>Representa relaciones 1:1, 1:N o N:M según el caso, con ejemplos coherentes.</td>
+              <td>1.5 pts</td>
+            </tr>
+            <tr>
+              <td>Modelo E-R</td>
+              <td>El diagrama es claro, ordenado, completo y permite comprender la estructura de la base de datos.</td>
+              <td>2 pts</td>
+            </tr>
+            <tr>
+              <td>Creación de la base de datos</td>
+              <td>Presenta tablas creadas en un SGBD, script SQL o archivo de base de datos funcional.</td>
+              <td>1 pt</td>
+            </tr>
+            <tr>
+              <td>Presentación y defensa</td>
+              <td>El equipo explica de forma clara su diseño, decisiones y funcionamiento básico.</td>
+              <td>1 pt</td>
+            </tr>
+            <tr class="total-row">
+              <td colspan="2">Total</td>
+              <td>10 pts</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="teacher-note">
+        <h3>Recomendación para entregar</h3>
+        <p>
+          El trabajo puede entregarse en PDF con el modelo E-R, capturas de la base de datos
+          y el archivo o script utilizado. También pueden usar herramientas como draw.io,
+          Lucidchart, diagrams.net, MySQL Workbench, Access o pgAdmin para diseñar y documentar.
+        </p>
+      </div>
+    </section>
+
+    <section class="section sources" id="fuentes">
+      <p class="section-label">Fuentes de consulta</p>
+      <h2>Material recomendado para ampliar información</h2>
+      <p>
+        Las siguientes fuentes pueden servir para que los estudiantes investiguen conceptos,
+        ejemplos y sintaxis básica:
+      </p>
+
+      <div class="source-list">
+        <a href="https://www.oracle.com/database/what-is-database/" target="_blank" rel="noopener noreferrer">
+          <strong>Oracle:</strong> ¿Qué es una base de datos?
+        </a>
+        <a href="https://www.ibm.com/think/topics/database" target="_blank" rel="noopener noreferrer">
+          <strong>IBM:</strong> Conceptos generales de base de datos y DBMS.
+        </a>
+        <a href="https://learn.microsoft.com/en-us/troubleshoot/microsoft-365-apps/access/define-table-relationships" target="_blank" rel="noopener noreferrer">
+          <strong>Microsoft Learn:</strong> Relaciones entre tablas.
+        </a>
+        <a href="https://bit.csc.lsu.edu/~chen/pdf/erd-5-pages.pdf" target="_blank" rel="noopener noreferrer">
+          <strong>Peter Chen:</strong> Artículo clásico del modelo Entidad-Relación.
+        </a>
+        <a href="https://www.postgresql.org/docs/current/tutorial-table.html" target="_blank" rel="noopener noreferrer">
+          <strong>PostgreSQL:</strong> Creación de tablas.
+        </a>
+        <a href="https://dev.mysql.com/doc/refman/9.1/en/creating-database.html" target="_blank" rel="noopener noreferrer">
+          <strong>MySQL:</strong> Crear y seleccionar una base de datos.
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Guía didáctica para estudiantes de primer año · Ingeniería en Sistemas de Información · UNAN-León</p>
+    <a href="#inicio">Volver arriba ↑</a>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
